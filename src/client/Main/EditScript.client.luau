@@ -16,12 +16,14 @@ local BuildingWindow = Windows.BuildingWindow
 local Builder = require(script.Parent.BuildingServices.BuildingService)
 local Remover = require(script.Parent.BuildingServices.RemovingService)
 local Connector = require(script.Parent.BuildingServices.ConnectingService)
+local Multiselect = require(script.Parent.BuildingServices.MultiselectionService)
 
 BuildingTools.MouseButton1Click:Connect(function()
     SoundService.Click:Play()
     BuildingWindow.Visible = not BuildingWindow.Visible
     if Remover.IsActive() then Remover.DestroyCurrentRemover() end
     if Connector.IsActive() then Connector.DestroyCurrent() end
+    if Multiselect.IsActive() then Multiselect.DestroyCurrent() end
 
     if BuildingWindow.Visible == false then
         if Builder.IsActive() then Builder.DestroyCurrentBuilder() end
@@ -37,6 +39,7 @@ for index, child in BuildingWindow.ScrollingFrame:GetChildren() do
 
             if Remover.IsActive() then Remover.DestroyCurrentRemover() end
             if Connector.IsActive() then Connector.DestroyCurrent() end
+            if Multiselect.IsActive() then Multiselect.DestroyCurrent() end
 
             if Builder.IsActive() then
                 if Builder.GetCurrentBuildingCircuitName() == child.Name:upper() then
@@ -55,10 +58,12 @@ end
 
 local Recycle = Interface.Recycle
 local Connect = Interface.Connect
+local MultiselectButton = Interface.Multiselect
 
 Recycle.MouseButton1Click:Connect(function()
     if Connector.IsActive() then Connector.DestroyCurrent() end
     if Builder.IsActive() then Builder.DestroyCurrentBuilder() end
+    if Multiselect.IsActive() then Multiselect.DestroyCurrent() end
 
     SoundService.Click:Play()
     if not Remover.IsActive() then
@@ -71,12 +76,26 @@ end)
 Connect.MouseButton1Click:Connect(function()
     if Remover.IsActive() then Remover.DestroyCurrentRemover() end
     if Builder.IsActive() then Builder.DestroyCurrentBuilder() end
+    if Multiselect.IsActive() then Multiselect.DestroyCurrent() end
 
     SoundService.Click:Play()
     if not Connector.IsActive() then
         local _newConnector = Connector.new()
     else
         Connector.DestroyCurrent()
+    end
+end)
+
+MultiselectButton.MouseButton1Click:Connect(function()
+    if Connector.IsActive() then Connector.DestroyCurrent() end
+    if Builder.IsActive() then Builder.DestroyCurrentBuilder() end
+    if Remover.IsActive() then Remover.DestroyCurrentRemover() end
+
+    SoundService.Click:Play()
+    if not Multiselect.IsActive() then
+        local _newMultiselect = Multiselect.new()
+    else
+        Multiselect.DestroyCurrent()
     end
 end)
 

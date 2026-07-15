@@ -12,7 +12,7 @@ local Interface = PlayerGui:WaitForChild("Interface")
 
 local ButtonInformationLabel : TextLabel = Interface.ButtonInformation
 
-local currentDesc = ""
+local _currentDesc = ""
 
 function ButtonInformation.__init__()
     local self = setmetatable({}, ButtonInformation)
@@ -27,7 +27,7 @@ function ButtonInformation:showInfo(button: TextButton)
     ButtonInformationLabel.Visible = true
     ButtonInformationLabel.Text = [[<mark color="#333333" transparency="0.1">]] .. ButtonDescription .. "</mark>"
 
-    currentDesc = ButtonDescription
+    _currentDesc = ButtonDescription
 
     RunService:BindToRenderStep("ButtonInformationLabelLocationUpdate", Enum.RenderPriority.Camera.Value, function(...)
         self:update(...)

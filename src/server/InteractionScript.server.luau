@@ -34,25 +34,11 @@ _TryInteraction.OnServerInvoke = function(player: Player, toInteract: Model)
 	-- Handle interaction
 	if circuitType == "FLIP_FLOP" then
 		local switch = toInteract.Switch
-		local connections = switch.Connections
-
-		local surfaceGui = switch.SurfaceGui
-		local icon = surfaceGui.Icon
 
 		local sentSignal = not switch:GetAttribute("Toggle")
 		switch:SetAttribute("Toggle", sentSignal)
 
-		icon.ImageColor3 = if icon.ImageColor3 == Color3.new(1, 1, 1)
-			then Color3.new(2 / 5, 2 / 5, 2 / 5)
-			else Color3.new(1, 1, 1)
-
 		_PlayLocalSound:FireClient(player, "Toggle")
-
-		-- Send signals towards connected inputs
-		for _, connection in connections:GetChildren() do
-			local connected = connection.Value
-			connected:SetAttribute("Toggle", sentSignal)
-		end
 	end
 
 	return true

@@ -4,6 +4,7 @@ local Remote = ReplicatedStorage:WaitForChild("Remote")
 local SoundService = game:GetService("SoundService")
 
 local ButtonInformation = require(script.Parent.InterfaceServices.ButtonInfo)
+
 ButtonInformation.__init__()
 
 Remote.SendNotification.OnClientEvent:Connect(function(message: string, soundName: string?)

@@ -38,7 +38,8 @@ return function(SelectedA, SelectedB)
 		ConnectionAB:Destroy()
 	end)
 
-	Constraint.new(SelectedA, SelectedB)
+	local Wire = Constraint.new(SelectedA, SelectedB)
+	Wire:AddTag("Selectable")
 
 	return {message = "Connected " .. SelectedA.Name .. " to " .. SelectedB.Parent.Name .. "'s " .. SelectedB.Name, success = true}
 end

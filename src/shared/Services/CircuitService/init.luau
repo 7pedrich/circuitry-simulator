@@ -68,10 +68,26 @@ function CircuitService:updateCircuitToggles(delta: number)
 
             if #input1C:GetChildren() == 0 then
                 _input1:SetAttribute("Toggle", false)
+            else
+                for _, connection in input1C:GetChildren() do
+                    local connected = connection.Value
+                    if connected:GetAttribute("Toggle") == true then
+                        _input1:SetAttribute("Toggle", true)
+                        break
+                    end
+                end
             end
 
             if #input2C:GetChildren() == 0 then
                 _input2:SetAttribute("Toggle", false)
+            else
+                for _, connection in input2C:GetChildren() do
+                    local connected = connection.Value
+                    if connected:GetAttribute("Toggle") == true then
+                        _input2:SetAttribute("Toggle", true)
+                        break
+                    end
+                end
             end
 
             _input1, _input2 = _input1:GetAttribute("Toggle"), _input2:GetAttribute("Toggle")
@@ -88,9 +104,18 @@ function CircuitService:updateCircuitToggles(delta: number)
             local model = circuitInformation.model
 
             _input1, _output = model.Input1, model.Output
+            local input1C = _input1.Connections
 
-            if #_input1.Connections:GetChildren() == 0 then
+            if #input1C:GetChildren() == 0 then
                 _input1:SetAttribute("Toggle", false)
+            else
+                for _, connection in input1C:GetChildren() do
+                    local connected = connection.Value
+                    if connected:GetAttribute("Toggle") == true then
+                        _input1:SetAttribute("Toggle", true)
+                        break
+                    end
+                end
             end
 
             _input1 = _input1:GetAttribute("Toggle")
