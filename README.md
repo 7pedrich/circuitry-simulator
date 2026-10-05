@@ -1,4 +1,7 @@
+Copyright (C) Pedro Andrade (2026)
 A logic circuitry simulator Built in Luau
+
+⚠ This github page only contains images and the source code. Sounds and Instances can only be found on the RBXL file.
 
 Features:
 
