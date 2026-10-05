@@ -3,7 +3,8 @@ A logic circuitry simulator Built in Luau
 
 ⚠ This github page only contains images and the source code. Sounds and Instances can only be found on the RBXL file.
 
-Features:
+---
+# Features:
 
 - Flipflops, All logic gates and LEDs
 - ✏ Editor tools (builder, remover, selection, wiring, cloning, rotation)
@@ -13,7 +14,11 @@ Showcase:
 <img width="1387" height="799" alt="image" src="https://github.com/user-attachments/assets/129800c4-5f46-40ca-992c-aae524da1584" />
 
 <br></br>
--> (de)Serialization to save and load circuitry 💾 (/src/shared/Services/SerializationService/init.luau)
+
+---
+# Importing and Exporting:
+
+- Serializer to save and load circuitry 💾 (/src/shared/Services/SerializationService/init.luau)
 
 Here are the abstract types of objects this serializer works with. Circuitry contains circuits, and wiring between those circuits.
 
@@ -48,3 +53,9 @@ Take this full adder circuitry for example:
 
 When serialized, it looks like this:
 [serialized.txt](https://github.com/user-attachments/files/33069217/serialized.txt)
+
+💡 You can also encode a serialized piece of text into a Base64 string for easier transportation,
+and then decode the Base64 string inside your forked serializer.
+
+--- 
+Forks are permitted and even *encouraged*. If you're willing to change the serializer, or add more features, feel free to do so;
